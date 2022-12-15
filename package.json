@@ -18,8 +18,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
+    "build": "cross-env INLINE_RUNTIME_CHUNK=false craco build",
+    "build:prod": "npm run build && zip -r retype.zip build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -39,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@craco/craco": "^6.4.5",
+    "cross-env": "^7.0.3"
   }
 }
