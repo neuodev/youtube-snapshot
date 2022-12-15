@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <main className="App">
+      <header id="header">
+        <img src="/logo128.png" alt="YouTube Snapshot Logo" />
+        <h1>YouTube Snapshot</h1>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Take a snapshot of YouTube videos at any moment with a click of a
+          button
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
-    </div>
+
+      <section className="section">
+        <h1>How To Use?</h1>
+        <p>
+          Open any youtube video and when you want to take a snapshot of the
+          video click
+          <span>
+            <code>CTRL</code>
+            <span>+</span>
+            <code>I</code>
+          </span>
+        </p>
+      </section>
+
+      <section className="section">
+        <h1>Report Issues</h1>
+        <p>
+          To report crashes or bugs you can open an issue on{" "}
+          <a href="https://github.com/AhmedIbrahim336/youtube-snapshot">
+            GitHub
+          </a>
+        </p>
+        <p>
+          Or you can email me directly at{" "}
+          <a href="mailto:me@ahmedibrahim.dev">me@ahmedibrahim.dev</a>
+        </p>
+      </section>
+
+      <section>
+        <h1>Thanks ❤️ — By Ahmed Ibrahim</h1>
+      </section>
+    </main>
   );
 }
 

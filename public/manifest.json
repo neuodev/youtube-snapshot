@@ -1,6 +1,6 @@
 {
   "name": "YouTube Snapshot",
-  "description": "Take a snapshot of YouTube videos as any moment",
+  "description": "Take a snapshot of YouTube videos at any moment",
   "version": "1.0.0",
   "manifest_version": 3,
   "action": {
