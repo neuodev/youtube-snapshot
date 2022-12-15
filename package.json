@@ -1,6 +1,6 @@
 {
-  "name": "youtube-screenshot",
-  "version": "0.1.0",
+  "name": "youtube-snapshot",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -20,7 +20,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "build": "cross-env INLINE_RUNTIME_CHUNK=false craco build",
-    "build:prod": "npm run build && zip -r retype.zip build",
+    "build:prod": "npm run build && zip -r youtube-snapshot.zip build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
