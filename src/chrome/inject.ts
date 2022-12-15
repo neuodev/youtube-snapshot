@@ -34,7 +34,7 @@ function snapshot() {
 }
 
 document.addEventListener("keydown", (event) => {
-  if (event.ctrlKey === true && event.key === "i") snapshot();
+  if (event.ctrlKey === true && event.code === "KeyI") snapshot();
 });
 
 export {};
