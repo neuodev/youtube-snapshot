@@ -52,6 +52,10 @@
   font-size: 1.1rem;
 }
 
+.playlist .list .listItem .copyText {
+  font-size: 14px;
+}
+
 .playlist .list .listItem::first-letter {
   text-transform: uppercase;
 }

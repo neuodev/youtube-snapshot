@@ -1,5 +1,6 @@
 export enum MessageType {
   GetPlaylistInfo = "get-playlist-info",
+  TakeScreenshot = "take-screenshot",
 }
 
 export interface IVideo {
@@ -7,6 +8,10 @@ export interface IVideo {
   thumbnail: string | null;
   time: string | null;
 }
+
+export type GetPlaylistReq = {
+  type: MessageType.GetPlaylistInfo;
+};
 
 export type GetPlaylistRes = {
   title: string | null;

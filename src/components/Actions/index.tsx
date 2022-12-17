@@ -1,38 +1,37 @@
 import React, { useState } from "react";
-import { GET_PLAYLIST_RESPONSE } from "../../tests/mockData";
-import { GetPlaylistRes, MessageType } from "../../types";
+import { sendMessage } from "../../chrome/message";
+import { GetPlaylistReq, GetPlaylistRes, MessageType } from "../../types";
 import Playlist from "./Playlist";
 import styles from "./style.module.css";
 
 const Actions = () => {
-  const [playlist, setPlaylist] = useState<GetPlaylistRes>(
-    GET_PLAYLIST_RESPONSE
-  );
+  const [playlist, setPlaylist] = useState<GetPlaylistRes | null>(null);
   const getPlaylistInfo = async () => {
-    const [tab] = await chrome.tabs.query({
-      active: true,
-      lastFocusedWindow: true,
+    const response = await sendMessage<GetPlaylistReq, GetPlaylistRes>({
+      type: MessageType.GetPlaylistInfo,
     });
 
-    if (!tab || !tab.id) return;
-
-    const response = (await chrome.tabs.sendMessage(tab.id, {
-      type: MessageType.GetPlaylistInfo,
-    })) as GetPlaylistRes;
+    if (!response) return;
 
     setPlaylist(response);
+  };
+
+  const takeScreenshot = async () => {
+    await sendMessage({ type: MessageType.TakeScreenshot });
   };
 
   return (
     <div id={styles.playlist}>
       <div className={styles.actions}>
-        <button className={styles.button}>Take Screenshot</button>
+        <button className={styles.button} onClick={takeScreenshot}>
+          Take Screenshot
+        </button>
         <button className={styles.button} onClick={getPlaylistInfo}>
           Generate Playlist Titles
         </button>
       </div>
 
-      <Playlist playlist={playlist} />
+      {playlist && <Playlist playlist={playlist} />}
     </div>
   );
 };

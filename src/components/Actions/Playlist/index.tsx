@@ -20,7 +20,6 @@ const Playlist: React.FC<{ playlist: GetPlaylistRes }> = ({ playlist }) => {
     );
   }
 
-  if (!playlist) return null;
   return (
     <div className={styles.playlist}>
       <h1 className={styles.title}>{playlist.title}</h1>
@@ -37,9 +36,9 @@ const Playlist: React.FC<{ playlist: GetPlaylistRes }> = ({ playlist }) => {
                 className={styles.copy}
               >
                 {copiedVideoId === video.title ? (
-                  "Copied!!"
+                  <span className={styles.copyText}>Copied!!</span>
                 ) : failedCopyVideoId === video.title ? (
-                  "Unable to copy!!"
+                  <span className={styles.copyText}>Error!!</span>
                 ) : (
                   <i className="fa-solid fa-copy"></i>
                 )}

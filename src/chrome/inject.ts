@@ -1,8 +1,19 @@
 import { GetPlaylistRes, IVideo, MessageType } from "../types";
 
-chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
-  if (request.type === MessageType.GetPlaylistInfo)
-    sendResponse(getPlaylistInfo());
+const handlers = {
+  [MessageType.GetPlaylistInfo]: getPlaylistInfo,
+  [MessageType.TakeScreenshot]: snapshot,
+};
+
+chrome.runtime.onMessage.addListener(function (
+  request: { type: MessageType },
+  _sender,
+  sendResponse
+) {
+  if (!request.type) sendResponse(null);
+
+  const reqHandler = handlers[request.type];
+  if (reqHandler) sendResponse(reqHandler());
 });
 
 document.addEventListener("keydown", (event) => {
