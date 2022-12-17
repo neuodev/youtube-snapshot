@@ -24,24 +24,7 @@
 
 #header p,
 .section p {
-  max-width: 450px;
+  max-width: 500px;
   line-height: 1.5;
   font-size: 18px;
-}
-
-.section {
-  margin-bottom: 20px;
-}
-
-.section p > span {
-  display: inline-block;
-  margin: 0px 4px;
-}
-
-.section code {
-  background-color: var(--light-gray);
-  padding: 4px;
-  border-radius: 8px;
-  margin: 0px 5px;
-  font-weight: bold;
 }

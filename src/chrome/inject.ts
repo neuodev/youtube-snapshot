@@ -16,11 +16,9 @@ function snapshot() {
   const base64ImageData = canvas.toDataURL("image/jpeg");
   const filename =
     "snap-" +
-    canvas.width +
+    Math.floor(canvas.width) +
     "x" +
-    canvas.height +
-    "-" +
-    video.currentTime +
+    Math.floor(canvas.height) +
     ".jpg";
 
   const a = document.createElement("a");
@@ -30,7 +28,12 @@ function snapshot() {
   img.src = base64ImageData;
   img.alt = filename;
   img.title = "Click to save " + filename;
-  window.open()?.document.body.appendChild(a).appendChild(img);
+
+  const tab = window.open();
+  if (!tab) return;
+  const body = tab.document.body;
+  body.appendChild(a).appendChild(img);
+  // Todo: Add download button
 }
 
 document.addEventListener("keydown", (event) => {
