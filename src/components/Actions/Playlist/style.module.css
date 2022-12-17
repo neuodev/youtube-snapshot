@@ -31,11 +31,19 @@
 }
 
 .playlist .list .listItem .listItemText {
-  width: 400px;
+  width: 350px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.5;
+}
+
+.playlist .list .listItem .time {
+  background-color: var(--dark);
+  padding: 4px 8px;
+  border-radius: var(--border-radius);
+  font-size: 0.8rem;
+  font-weight: 500;
 }
 
 .playlist .list .listItem .copy {

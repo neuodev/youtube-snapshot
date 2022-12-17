@@ -1,4 +1,4 @@
-import { GetPlaylistRes, MessageType } from "../types";
+import { GetPlaylistRes, IVideo, MessageType } from "../types";
 
 chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
   if (request.type === MessageType.GetPlaylistInfo)
@@ -48,22 +48,35 @@ function snapshot() {
 }
 
 function getPlaylistInfo(): GetPlaylistRes {
-  const videos: string[] = [];
+  const videos: IVideo[] = [];
+
   document
-    .querySelectorAll<HTMLSpanElement>(
-      "#video-title.ytd-playlist-panel-video-renderer"
-    )
-    .forEach((video) => videos.push(video.innerText));
+    .querySelectorAll<HTMLDivElement>("#playlist-items")
+    .forEach((video) => {
+      if (!video) return;
+      const thumbnailEl = video.querySelector<HTMLAnchorElement>("#thumbnail");
+      const thumbnailImg =
+        video.querySelector<HTMLImageElement>("#thumbnail img");
+      const videoTitleEl = video.querySelector<HTMLSpanElement>("#video-title");
 
-  const title = document.querySelector("#header-description h3 a");
+      videos.push({
+        title: videoTitleEl ? videoTitleEl.innerText : null,
+        thumbnail: thumbnailImg ? thumbnailImg.src : null,
+        time: thumbnailEl ? thumbnailEl.innerText : null,
+      });
+    });
 
-  if (!title || videos.length === 0) return null;
+  const title = document.querySelector<HTMLAnchorElement>(
+    "#header-description h3 a"
+  );
+
   console.log({
     videos,
-    title: title.innerHTML,
+    title: title ? title.innerText : null,
   });
+
   return {
     videos,
-    title: title.innerHTML,
+    title: title ? title.innerText : null,
   };
 }

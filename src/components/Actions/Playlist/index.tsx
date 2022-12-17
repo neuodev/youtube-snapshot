@@ -26,22 +26,25 @@ const Playlist: React.FC<{ playlist: GetPlaylistRes }> = ({ playlist }) => {
       <h1 className={styles.title}>{playlist.title}</h1>
       <ul className={styles.list}>
         {playlist.videos.map((video, idx) => (
-          <li key={video} className={styles.listItem}>
+          <li key={video.title} className={styles.listItem}>
             <p className={styles.listItemText}>
-              {idx + 1} ) {video}
+              {idx + 1} {")"} {video.title || "--"}
             </p>
-            <button
-              onClick={() => copyToClipBoard(video)}
-              className={styles.copy}
-            >
-              {copiedVideoId === video ? (
-                "Copied!!"
-              ) : failedCopyVideoId === video ? (
-                "Unable to copy!!"
-              ) : (
-                <i className="fa-solid fa-copy"></i>
-              )}
-            </button>
+            <p className={styles.time}>{video.time || "--"}</p>
+            {video.title !== null && (
+              <button
+                onClick={() => video.title && copyToClipBoard(video.title)}
+                className={styles.copy}
+              >
+                {copiedVideoId === video.title ? (
+                  "Copied!!"
+                ) : failedCopyVideoId === video.title ? (
+                  "Unable to copy!!"
+                ) : (
+                  <i className="fa-solid fa-copy"></i>
+                )}
+              </button>
+            )}
           </li>
         ))}
       </ul>
