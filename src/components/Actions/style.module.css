@@ -1,0 +1,33 @@
+#playlist {
+  padding: 20px 0px;
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button {
+  border: none;
+  outline: none;
+  background-color: #353941;
+  color: var(--white);
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 6px 8px 16px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 500ms ease;
+}
+
+.button:hover {
+  background-color: var(--white);
+  color: var(--dark);
+}
+
+.button:focus {
+  outline: 2px solid var(--white);
+}

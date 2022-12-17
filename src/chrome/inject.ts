@@ -1,3 +1,14 @@
+import { GetPlaylistRes, MessageType } from "../types";
+
+chrome.runtime.onMessage.addListener(function (request, _sender, sendResponse) {
+  if (request.type === MessageType.GetPlaylistInfo)
+    sendResponse(getPlaylistInfo());
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.ctrlKey === true && event.code === "KeyI") snapshot();
+});
+
 // Todo: Refractor this function again
 // Add validation and error handling `alert(...errors)`
 // chosoe a better name for the snapshot
@@ -36,8 +47,23 @@ function snapshot() {
   // Todo: Add download button
 }
 
-document.addEventListener("keydown", (event) => {
-  if (event.ctrlKey === true && event.code === "KeyI") snapshot();
-});
+function getPlaylistInfo(): GetPlaylistRes {
+  const videos: string[] = [];
+  document
+    .querySelectorAll<HTMLSpanElement>(
+      "#video-title.ytd-playlist-panel-video-renderer"
+    )
+    .forEach((video) => videos.push(video.innerText));
 
-export {};
+  const title = document.querySelector("#header-description h3 a");
+
+  if (!title || videos.length === 0) return null;
+  console.log({
+    videos,
+    title: title.innerHTML,
+  });
+  return {
+    videos,
+    title: title.innerHTML,
+  };
+}

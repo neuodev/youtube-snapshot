@@ -3,7 +3,8 @@
 :root {
   --dark: #121212;
   --light-gray: #2c3333;
-  --white-text: #e5e7eb;
+  --white: #e5e7eb;
+  --border-radius: 8px;
 }
 
 *,
@@ -15,7 +16,13 @@
 }
 
 a {
-  color: var(--white-text);
+  color: var(--white);
+}
+
+button {
+  background-color: transparent;
+  outline: none;
+  border: none;
 }
 
 body {

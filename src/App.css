@@ -6,8 +6,9 @@
   width: 600px;
   height: 900px;
   background-color: var(--dark);
-  color: var(--white-text);
+  color: var(--white);
   padding: 40px 20px;
+  overflow: auto;
 }
 
 #header {
