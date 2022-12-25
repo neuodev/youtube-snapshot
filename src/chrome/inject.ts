@@ -1,5 +1,13 @@
 import { GetPlaylistRes, IVideo, MessageType } from "../types";
 
+main();
+/**
+ * Content script entry point
+ */
+function main() {
+  skipAds();
+}
+
 const handlers = {
   [MessageType.GetPlaylistInfo]: getPlaylistInfo,
   [MessageType.TakeScreenshot]: snapshot,
@@ -90,4 +98,18 @@ function getPlaylistInfo(): GetPlaylistRes {
     videos,
     title: title ? title.innerText : null,
   };
+}
+
+function skipAds() {
+  setInterval(() => {
+    const skipBtn = document.querySelector<HTMLButtonElement>(
+      ".ytp-ad-skip-button"
+    );
+
+    if (!skipBtn) return;
+
+    skipBtn.click();
+
+    console.log("Add skipped...");
+  }, 1_000);
 }
